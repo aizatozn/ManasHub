@@ -5,4 +5,8 @@
 //  Created by Aizat Ozbekova on 13/12/23.
 //
 
-import Foundation
+import UIKit
+
+class ServiceDetailViewController: UIViewController {
+    // Ваш код для отображения информации о сервисе
+}

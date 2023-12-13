@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct LessonModel {
+    var day: String
+    var classes: [String]
+}

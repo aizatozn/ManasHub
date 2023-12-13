@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct ScheduleModel {
+    var day: String
+    var classes: [String]
+}
+

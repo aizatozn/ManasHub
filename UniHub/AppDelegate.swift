@@ -10,20 +10,25 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
-    }
+            window = UIWindow(frame: UIScreen.main.bounds)
+            
+            // Создаем экземпляр MainViewController
+            let mainViewController = MainViewController()
 
-    // MARK: UISceneSession Lifecycle
+            // Создаем UINavigationController с MainViewController в качестве корневого контроллера
+            let navigationController = UINavigationController(rootViewController: mainViewController)
 
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
+            // Назначаем UINavigationController корневым контроллером окна
+            window?.rootViewController = navigationController
+
+            // Делаем окно видимым
+            window?.makeKeyAndVisible()
+
+            return true
+        }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.

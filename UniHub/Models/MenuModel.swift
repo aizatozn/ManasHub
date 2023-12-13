@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct MenuModel {
+    var day: String
+    var classes: [String]
+}
