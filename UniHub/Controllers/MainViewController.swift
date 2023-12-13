@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDataSource {
 
-    private let services = ["Расписание", "Меню в столовой", "Список уроков", "Сайт университета", "Инстаграм универа"]
+    private let services = ["Time Table", "Manas Menu", "Obis", "manas.edu.kg", "@studentsmanasedukg"]
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
