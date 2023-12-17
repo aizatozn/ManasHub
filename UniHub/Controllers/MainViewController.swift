@@ -7,13 +7,20 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDataSource {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    private let services = ["Time Table", "Manas Menu", "Obis", "manas.edu.kg", "@students.manas.edu.kg"]
+    private let services = [
+        "Time Table": "http://timetable.manas.edu.kg/department-printer/142",
+        "Manas Menu": "https://beslenme.manas.edu.kg/menu",
+        "Obis": "http://obis.manas.edu.kg",
+        "manas.edu.kg": "https://www.manas.edu.kg/kg",
+        "@students.manas.edu.kg": "https://www.instagram.com/students.manas.edu.kg/?hl=en"
+    ]
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         return tableView
     }()
@@ -23,10 +30,8 @@ class MainViewController: UIViewController, UITableViewDataSource {
 
         title = "Главный экран"
         
-        // Добавляем UITableView на главный экран
         view.addSubview(tableView)
 
-        // Настраиваем констрейнты (могут быть настроены с учетом ваших предпочтений)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -44,8 +49,19 @@ class MainViewController: UIViewController, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = services[indexPath.row]
+        cell.textLabel?.text = Array(services.keys)[indexPath.row]
         return cell
     }
-}
 
+    // MARK: - UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        // Получаем ключ (название сервиса) и значение (ссылку) из словаря
+        let selectedService = Array(services.keys)[indexPath.row]
+        if let serviceURLString = services[selectedService], let serviceURL = URL(string: serviceURLString) {
+            UIApplication.shared.open(serviceURL, options: [:], completionHandler: nil)
+        }
+    }
+}
