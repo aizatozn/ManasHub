@@ -30,6 +30,13 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         title = "Главный экран"
         
+        // Установка фонового изображения
+        let backgroundImage = UIImageView(image: UIImage(named: "backgroundImage"))
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.frame = view.bounds
+        view.addSubview(backgroundImage)
+        view.sendSubviewToBack(backgroundImage)
+        
         view.addSubview(tableView)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
