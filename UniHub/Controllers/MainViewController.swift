@@ -63,5 +63,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if let serviceURLString = services[selectedService], let serviceURL = URL(string: serviceURLString) {
             UIApplication.shared.open(serviceURL, options: [:], completionHandler: nil)
         }
+        
+        
+        
     }
 }
